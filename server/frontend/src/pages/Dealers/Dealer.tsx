@@ -18,7 +18,7 @@ const Dealer = () => {
     isError: reviewsError,
   } = useDealerReviews(id);
 
-  const sentimentIcon = (sentiment) => {
+  const sentimentIcon = (sentiment: 'positive' | 'negative' | 'neutral') => {
     if (sentiment === "positive") {
       return positive_icon;
     }
