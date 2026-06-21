@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useParams } from "react-router";
 
 import Header from "@/components/layout/Header";
-import { useCarModels, useDealer, usePostReviewMutation } from "@/hooks/useDealers";
+import {
+  useCarModels,
+  useDealer,
+  usePostReviewMutation,
+} from "@/hooks/useDealers";
 
 import "./Dealers.css";
-
 
 const PostReview = () => {
   const [review, setReview] = useState("");
@@ -51,7 +54,6 @@ const PostReview = () => {
     }
   };
 
-
   return (
     <div>
       <Header />
@@ -59,16 +61,22 @@ const PostReview = () => {
         <h1 style={{ color: "darkblue" }}>{dealer?.full_name}</h1>
         <textarea
           id="review"
-          cols="50"
-          rows="7"
+          cols={50}
+          rows={7}
           onChange={(e) => setReview(e.target.value)}
         ></textarea>
         <div className="input_field">
-          Purchase Date <input type="date" onChange={(e) => setDate(e.target.value)} />
+          Purchase Date{" "}
+          <input type="date" onChange={(e) => setDate(e.target.value)} />
         </div>
         <div className="input_field">
           Car Make
-          <select name="cars" id="cars" value={model} onChange={(e) => setModel(e.target.value)}>
+          <select
+            name="cars"
+            id="cars"
+            value={model}
+            onChange={(e) => setModel(e.target.value)}
+          >
             <option value="" disabled>
               Choose Car Make and Model
             </option>
@@ -84,11 +92,21 @@ const PostReview = () => {
         </div>
 
         <div className="input_field">
-          Car Year <input type="number" onChange={(e) => setYear(e.target.value)} max={2023} min={2015} />
+          Car Year{" "}
+          <input
+            type="number"
+            onChange={(e) => setYear(e.target.value)}
+            max={2023}
+            min={2015}
+          />
         </div>
 
         <div>
-          <button className="postreview" onClick={postreview} disabled={postReviewMutation.isPending}>
+          <button
+            className="postreview"
+            onClick={postreview}
+            disabled={postReviewMutation.isPending}
+          >
             {postReviewMutation.isPending ? "Posting..." : "Post Review"}
           </button>
         </div>

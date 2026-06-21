@@ -16,7 +16,7 @@ const Dealers = () => {
     selectedState === "All"
       ? dealers
       : dealers.filter((dealer) => dealer.state === selectedState);
-  const isLoggedIn = sessionStorage.getItem("username") != null;
+  const isLoggedIn = sessionStorage.getItem("username") !== null;
 
   return (
     <div>

@@ -1,4 +1,6 @@
 import { Home, Login, Register } from "@/pages";
+import Dealers from "@/pages/Dealers/Dealers";
+import PostReview from "@/pages/Dealers/PostReview";
 import type { RouteObject } from "react-router";
 
 interface EndpointsType {
@@ -13,6 +15,12 @@ export const paths = {
   auth: {
     login: "/auth/login",
     register: "/auth/register",
+  },
+  dealers: {
+    root: "/dealers",
+  },
+  postreview: {
+    root: "/postreview/:id",
   },
 };
 
@@ -38,6 +46,14 @@ export const endpoints: EndpointsType = {
         },
       },
     ],
+  },
+  dealers: {
+    path: paths.dealers.root,
+    element: <Dealers />,
+  },
+  postreview: {
+    path: paths.postreview.root,
+    element: <PostReview />,
   },
 };
 
