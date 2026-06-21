@@ -62,8 +62,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'newfrontend/build'),
-            os.path.join(BASE_DIR, 'newfrontend/static'),
+            os.path.join(BASE_DIR, 'frontend/build'),
+            os.path.join(BASE_DIR, 'frontend/static'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -138,7 +138,7 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'newfrontend/build'),
-    os.path.join(BASE_DIR, 'newfrontend/static'),
+    os.path.join(BASE_DIR, 'frontend/build'),
+    os.path.join(BASE_DIR, 'frontend/static'),
 ]
 
