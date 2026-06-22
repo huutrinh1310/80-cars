@@ -12,12 +12,15 @@ const reviews_data = JSON.parse(fs.readFileSync("reviews.json", "utf8"));
 const dealerships_data = JSON.parse(
   fs.readFileSync("dealerships.json", "utf8"),
 );
+const inventory_data = JSON.parse(fs.readFileSync("car_records.json", "utf8"));
 
 mongoose.connect("mongodb://mongo_db:27017/", { dbName: "dealershipsDB" });
 
 const Reviews = require("./review");
 
 const Dealerships = require("./dealership");
+
+const Inventory = require("./inventory");
 
 try {
   Reviews.deleteMany({}).then(() => {
@@ -26,7 +29,10 @@ try {
   Dealerships.deleteMany({}).then(() => {
     Dealerships.insertMany(dealerships_data["dealerships"]);
   });
+
+  Inventory.insertMany(inventory_data["cars"]);
 } catch (error) {
+  console.error(error);
   res.status(500).json({ error: "Error fetching documents" });
 }
 
@@ -112,6 +118,24 @@ app.post("/insert_review", express.raw({ type: "*/*" }), async (req, res) => {
   }
 });
 
+app.get("/fetchInventory", async (req, res) => {
+  try {
+    const documents = await Inventory.find();
+    console.log("fetchInventory" + documents);
+    res.json(documents);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching documents" });
+  }
+});
+// Express route to fetch car by a particular id
+app.get("/fetchInventory/:id", async (req, res) => {
+  try {
+    const documents = await Inventory.find({ id: req.params.id });
+    res.json(documents);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching documents" });
+  }
+});
 // Start the Express server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

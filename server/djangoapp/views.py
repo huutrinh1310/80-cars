@@ -13,7 +13,6 @@ from django.contrib.auth import login, authenticate
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
-from .populate import initiate
 from .restapis import get_request, analyze_review_sentiments, post_review
 
 
@@ -80,12 +79,27 @@ def registration(request):
         data = {"userName": username, "status": "User or email already exists"}
         return JsonResponse(data)
 
-def get_cars(_request):
+def get_cars(request):
+    inventory = get_request("/fetchInventory") or []
+    cars = []
+    for car in inventory:
+        cars.append({
+            "CarModel": car.get("model", ""),
+            "CarMake": car.get("make", ""),
+            "id": car.get("id"),
+            "year": car.get("year"),
+            "mileage": car.get("mileage"),
+            "bodyType": car.get("bodyType"),
+            "dealer_id": car.get("dealer_id"),
+        })
+    print(inventory)
+    return JsonResponse({"CarModels":cars})
+
+def get_cars_detail(_request, car_id):
     # Call get_cars_from_cf method to get cars from cloudant
-    cars = initiate()
-    data = {"cars": cars}
-    print(data)
-    return JsonResponse(data)
+    endpoint = "/fetchInventory/" + str(car_id)
+    cars = get_request(endpoint)
+    return JsonResponse({"status":200,"cars":cars})
 
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships

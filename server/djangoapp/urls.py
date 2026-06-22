@@ -16,6 +16,7 @@ urlpatterns = [
 
     # path(route='get_dealers', view=views.get_dealerships, name='get_dealers'),
     path(route='get_cars', view=views.get_cars, name ='api get_cars'),
+    path(route='get_cars/<int:car_id>', view=views.get_cars_detail, name ='api get_cars_detail'),
     path(route='get_dealers', view=views.get_dealerships, name='api get_dealers'),
     path(route='get_dealers/<str:state>', view=views.get_dealerships, name='api get_dealers_by_state'),
 
