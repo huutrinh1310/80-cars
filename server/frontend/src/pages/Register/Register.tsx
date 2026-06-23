@@ -36,8 +36,6 @@ export const Register = () => {
       } else {
         alert(message);
       }
-
-      gohome();
     }
   };
 

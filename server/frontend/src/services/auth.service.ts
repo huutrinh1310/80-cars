@@ -16,9 +16,12 @@ export interface RegisterPayload {
 export interface AuthResponse {
   status?: string | boolean;
   error?: string;
+  message?: string;
   userName?: string;
   firstName?: string;
   lastName?: string;
+  email?: string;
+  access_token?: string;
 }
 
 export function persistUserSession(data: Partial<RegisterPayload> & AuthResponse) {
@@ -33,6 +36,10 @@ export function persistUserSession(data: Partial<RegisterPayload> & AuthResponse
   if (data.lastName) {
     sessionStorage.setItem("lastname", data.lastName);
   }
+
+  if (data.access_token) {
+    sessionStorage.setItem("access_token", data.access_token);
+  }
 }
 
 export async function login({ username, password }: LoginPayload) {
@@ -45,7 +52,7 @@ export async function login({ username, password }: LoginPayload) {
   });
 
   if (data.status !== "Authenticated") {
-    throw new Error("The user could not be authenticated.");
+    throw new Error(data.error ?? "The user could not be authenticated.");
   }
 
   persistUserSession(data);
@@ -58,7 +65,7 @@ export async function register(payload: RegisterPayload) {
     body: JSON.stringify(payload),
   });
 
-  if (!data.status) {
+  if (data.status !== "Authenticated") {
     throw new Error(data.error ?? "The user could not be registered.");
   }
 
@@ -72,12 +79,13 @@ export async function register(payload: RegisterPayload) {
 
 export async function logout() {
   const data = await requestJson<unknown>("/djangoapp/logout", {
-    method: "GET",
+    method: "POST",
   });
 
   sessionStorage.removeItem("username");
   sessionStorage.removeItem("firstname");
   sessionStorage.removeItem("lastname");
+  sessionStorage.removeItem("access_token");
 
   return data;
 }

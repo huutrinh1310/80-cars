@@ -28,33 +28,24 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      await loginMutation.mutateAsync(
-        {
-          username: user.userName,
-          password: user.password,
-        },
-        {
-          onSuccess: (data) => {
-            login({
-              username: data.userName || "",
-              firstName: data.firstName || "",
-              lastName: data.lastName || "",
-              email: "",
-            } as User);
-            console.log("Login successful", data);
-            gohome();
-          },
-          onError: (error) => {
-            const message =
-              error instanceof Error
-                ? error.message
-                : "The user could not be authenticated.";
-            alert(message);
-          },
-        },
-      );
-    } catch {
-      alert("The user could not be authenticated.");
+      const data = await loginMutation.mutateAsync({
+        username: user.userName,
+        password: user.password,
+      });
+
+      login({
+        username: data.userName || "",
+        firstName: data.firstName || "",
+        lastName: data.lastName || "",
+        email: data.email || "",
+      } as User);
+      gohome();
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "The user could not be authenticated.";
+      alert(message);
     }
   };
 

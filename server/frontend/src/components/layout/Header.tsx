@@ -27,7 +27,6 @@ const Header = () => {
 
   const renderHomePageItems = useCallback(() => {
     if (isAuthenticated) {
-      console.log("user", user);
 
       return (
         <div className="flex gap-2">

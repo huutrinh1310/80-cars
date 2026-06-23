@@ -109,6 +109,7 @@ export async function postDealerReview(payload: PostReviewPayload) {
   const data = await requestJson<MutationResponse>("/djangoapp/add_review", {
     method: "POST",
     body: JSON.stringify(payload),
+    credentials: "include",
   });
 
   if (data.status !== 200) {
