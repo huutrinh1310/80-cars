@@ -121,7 +121,6 @@ app.post("/insert_review", express.raw({ type: "*/*" }), async (req, res) => {
 app.get("/fetchInventory", async (req, res) => {
   try {
     const documents = await Inventory.find();
-    console.log("fetchInventory" + documents);
     res.json(documents);
   } catch (error) {
     res.status(500).json({ error: "Error fetching documents" });

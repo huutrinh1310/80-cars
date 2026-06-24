@@ -240,8 +240,29 @@ th {
 .nav_item {
   margin-left: 15px;
   font-size: 20px;
-  color: azure;
   align-self: center;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: rgb(97, 64, 128);
+  color: azure;
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background-color: rgb(97, 64, 128);
+  color: azure;
+}
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+.btn-secondary {
+  background-color: azure;
+  color: #010101;
 }
 
 .input_panel {

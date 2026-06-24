@@ -1,7 +1,7 @@
-import { useState } from "react";
 import Header from "@/components/layout/Header";
 import { paths } from "@/endpoints";
 import { useRegisterMutation } from "@/hooks/useAuth";
+import { useState } from "react";
 import { Link } from "react-router";
 
 export const Register = () => {
@@ -29,7 +29,9 @@ export const Register = () => {
       gohome();
     } catch (error) {
       const message =
-        error instanceof Error ? error.message : "The user could not be registered.";
+        error instanceof Error
+          ? error.message
+          : "The user could not be registered.";
 
       if (message === "Already Registered") {
         alert("The user with same username is already registered");
@@ -44,7 +46,7 @@ export const Register = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen dealers-page">
       <Header />
       <div
         onClick={(e) => {

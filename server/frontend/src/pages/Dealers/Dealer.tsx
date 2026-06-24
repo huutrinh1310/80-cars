@@ -4,10 +4,10 @@ import negative_icon from "@/assets/negative.png";
 import neutral_icon from "@/assets/neutral.png";
 import positive_icon from "@/assets/positive.png";
 import review_icon from "@/assets/reviewbutton.png";
-import Header from "@/components/layout/Header";
 import { useDealer, useDealerReviews } from "@/hooks/useDealers";
 
 import "./Dealers.css";
+import Header from "@/components/layout/Header";
 
 const Dealer = () => {
   const { id } = useParams();
@@ -35,57 +35,71 @@ const Dealer = () => {
   };
 
   return (
-    <div style={{ margin: "20px" }}>
+    <div className="dealers-page">
       <Header />
       {dealerLoading ? (
-        <div style={{ marginTop: "10px" }}>Loading dealer...</div>
+        <div className="dealer-loading">Loading dealer...</div>
       ) : null}
       {dealerError ? (
-        <div style={{ marginTop: "10px" }}>Unable to load dealer.</div>
+        <div className="dealer-error">Unable to load dealer.</div>
       ) : null}
 
       {dealer ? (
-        <div style={{ marginTop: "10px" }}>
-          <h1 style={{ color: "grey" }}>
-            {dealer.full_name}
-            {sessionStorage.getItem("username") ? (
-              <Link to={`/postreview/${dealer.id}`}>
+        <div className="dealer-page">
+          <div className="dealer-card">
+            <div className="dealer-card-header">
+              <h1 className="dealer-card-title">{dealer.full_name}</h1>
+              <Link to={`/postreview/${dealer.id}`} className="review-link">
                 <img
                   src={review_icon}
-                  style={{
-                    width: "10%",
-                    marginLeft: "10px",
-                    marginTop: "10px",
-                  }}
                   alt="Post Review"
+                  className="review_icon"
                 />
               </Link>
-            ) : null}
-          </h1>
-          <h4 style={{ color: "grey" }}>
-            {dealer.city},{dealer.address}, Zip - {dealer.zip}, {dealer.state}
-          </h4>
+            </div>
+
+            <ul className="dealer-meta">
+              <li className="dealer-meta-item">
+                <span className="dealer-meta-label">City</span>
+                <span className="dealer-meta-value">{dealer.city}</span>
+              </li>
+              <li className="dealer-meta-item">
+                <span className="dealer-meta-label">Address</span>
+                <span className="dealer-meta-value">{dealer.address}</span>
+              </li>
+              <li className="dealer-meta-item">
+                <span className="dealer-meta-label">Zip</span>
+                <span className="dealer-meta-value">{dealer.zip}</span>
+              </li>
+            </ul>
+          </div>
         </div>
       ) : null}
 
-      <div className="reviews_panel">
-        {reviewsLoading ? <span>Loading Reviews....</span> : null}
-        {reviewsError ? <div>Unable to load reviews.</div> : null}
+      <div className="review-list">
+        {reviewsLoading ? (
+          <span className="review-loading">Loading reviews...</span>
+        ) : null}
+        {reviewsError ? (
+          <div className="review-error">Unable to load reviews.</div>
+        ) : null}
         {!reviewsLoading && !reviewsError && reviews.length === 0 ? (
-          <div>No reviews yet!</div>
+          <div className="review-empty">No reviews yet.</div>
         ) : null}
         {!reviewsLoading && !reviewsError
           ? reviews.map((review, index) => (
-              <div key={`${review.name}-${index}`} className="review_panel">
+              <div key={`${review.name}-${index}`} className="review-card">
                 <img
                   src={sentimentIcon(review.sentiment)}
-                  className="emotion_icon"
+                  className="review-card-icon"
                   alt="Sentiment"
                 />
-                <div className="review">{review.review}</div>
-                <div className="reviewer">
-                  {review.name} {review.car_make} {review.car_model}{" "}
-                  {review.car_year}
+                <div className="review-card-body">
+                  <div className="review-card-name">{review.name}</div>
+                  <div className="review-card-copy">{review.review}</div>
+                  <div className="review-card-meta">
+                    {review.car_make} {review.car_model} {review.car_year}
+                  </div>
                 </div>
               </div>
             ))

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import Header from "@/components/layout/Header";
 import { paths } from "@/endpoints";
 import { useLoginMutation } from "@/hooks/useAuth";
-import { Link, useNavigate } from "react-router";
 import { useAuthentication } from "@/provider";
 import type { User } from "@/types/user.type";
+import { Link, useNavigate } from "react-router";
+import Header from "@/components/layout/Header";
 
 export const Login = () => {
   const [user, setUser] = useState<{
@@ -50,7 +50,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen dealers-page">
       <Header />
       <div
         onClick={(e) => {

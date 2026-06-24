@@ -52,14 +52,17 @@ export const endpoints: EndpointsType = {
   dealers: {
     path: paths.dealers.root,
     element: <Dealers />,
+    isAuthenticated: true,
   },
   dealer: {
     element: <Dealer />,
     path: paths.dealers.detail,
+    isAuthenticated: true,
   },
   postreview: {
     path: paths.postreview.root,
     element: <PostReview />,
+    isAuthenticated: true,
   },
 };
 

@@ -1,12 +1,12 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { endpoints, getEndpoints } from "./endpoints";
 
-import "./index.css";
 import App from "./App";
+import "./index.css";
 
 const router = createBrowserRouter(getEndpoints(endpoints));
 const queryClient = new QueryClient();

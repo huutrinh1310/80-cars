@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router";
 
-import Header from "@/components/layout/Header";
 import {
   useCarModels,
   useDealer,
@@ -9,6 +8,7 @@ import {
 } from "@/hooks/useDealers";
 
 import "./Dealers.css";
+import Header from "@/components/layout/Header";
 
 const PostReview = () => {
   const [review, setReview] = useState("");
@@ -55,19 +55,24 @@ const PostReview = () => {
   };
 
   return (
-    <div>
+    <div className="dealers-page">
       <Header />
-      <div style={{ margin: "5%" }}>
-        <h1 style={{ color: "darkblue" }}>{dealer?.full_name}</h1>
+      <div className="review-editor">
+        <h1 className="review-editor-title">{dealer?.full_name}</h1>
         <textarea
           id="review"
           cols={50}
           rows={7}
+          value={review}
           onChange={(e) => setReview(e.target.value)}
-        ></textarea>
+        />
         <div className="input_field">
-          Purchase Date{" "}
-          <input type="date" onChange={(e) => setDate(e.target.value)} />
+          Purchase Date
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
         </div>
         <div className="input_field">
           Car Make
@@ -92,9 +97,10 @@ const PostReview = () => {
         </div>
 
         <div className="input_field">
-          Car Year{" "}
+          Car Year
           <input
             type="number"
+            value={year}
             onChange={(e) => setYear(e.target.value)}
             max={2023}
             min={2015}
@@ -103,7 +109,7 @@ const PostReview = () => {
 
         <div>
           <button
-            className="postreview"
+            className="review-submit"
             onClick={postreview}
             disabled={postReviewMutation.isPending}
           >
