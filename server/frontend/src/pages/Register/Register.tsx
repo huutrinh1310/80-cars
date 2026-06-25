@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import { paths } from "@/endpoints";
 import { useRegisterMutation } from "@/hooks/useAuth";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export const Register = () => {
   const [userRegister, setUserRegister] = useState({
@@ -14,13 +14,12 @@ export const Register = () => {
   });
   const [open, setOpen] = useState(true);
   const registerMutation = useRegisterMutation();
+  const navigate = useNavigate();
 
-  // Redirect to home
   const gohome = () => {
-    window.location.href = paths.home;
+    navigate(paths.home);
   };
 
-  // Handle form submission
   const register = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -43,6 +42,7 @@ export const Register = () => {
 
   if (!open) {
     gohome();
+    return null;
   }
 
   return (

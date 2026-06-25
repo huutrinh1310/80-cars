@@ -1,7 +1,6 @@
 import "@/assets/bootstrap.min.css";
 import { useLogoutMutation } from "@/hooks/useAuth";
 import { useAuthentication } from "@/provider";
-import { useCallback } from "react";
 import { Link } from "react-router";
 
 const Header = () => {
@@ -24,36 +23,6 @@ const Header = () => {
     }
   };
 
-  const renderHomePageItems = useCallback(() => {
-    if (isAuthenticated) {
-      return (
-        <div className="flex gap-2">
-          <span className="flex items-center font-medium text-amber-300">
-            {user?.username}
-          </span>
-          <Link
-            className="nav_item btn btn-primary"
-            to="/djangoapp/logout"
-            onClick={logout}
-          >
-            {logoutMutation.isPending ? "Logging out..." : "Logout"}
-          </Link>
-        </div>
-      );
-    } else {
-      return (
-        <div className="flex gap-2">
-          <Link className="nav_item btn btn-primary" to="/auth/login">
-            Login
-          </Link>
-          <Link className="nav_item btn btn-secondary" to="/auth/register">
-            Register
-          </Link>
-        </div>
-      );
-    }
-  }, [isAuthenticated, user]);
-
   return (
     <nav className="navbar shadow-sm gap-5 px-5 flex">
       <Link to="/" className="flex items-center decoration-0 text-black! hover:opacity-70">
@@ -63,7 +32,29 @@ const Header = () => {
       <div className="flex " id="navbarText">
         <span className="navbar-text ">
           <div className="loginlink" id="loginlogout">
-            {renderHomePageItems()}
+            {isAuthenticated ? (
+              <div className="flex gap-2">
+                <span className="flex items-center font-medium text-amber-300">
+                  {user?.username}
+                </span>
+                <Link
+                  className="nav_item btn btn-primary"
+                  to="/djangoapp/logout"
+                  onClick={logout}
+                >
+                  {logoutMutation.isPending ? "Logging out..." : "Logout"}
+                </Link>
+              </div>
+            ) : (
+              <div className="flex gap-2">
+                <Link className="nav_item btn btn-primary" to="/auth/login">
+                  Login
+                </Link>
+                <Link className="nav_item btn btn-secondary" to="/auth/register">
+                  Register
+                </Link>
+              </div>
+            )}
           </div>
         </span>
       </div>

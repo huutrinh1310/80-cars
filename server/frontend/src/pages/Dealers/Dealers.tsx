@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 
 import review_icon from "@/assets/reviewicon.png";
@@ -30,15 +30,11 @@ const Dealers = () => {
   );
   const isLoggedIn = sessionStorage.getItem("username") !== null;
 
-  useEffect(() => {
+  const resetPagination = (state: string, pageSize: number) => {
+    setSelectedState(state);
+    setItemsPerPage(pageSize);
     setCurrentPage(1);
-  }, [selectedState, itemsPerPage]);
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages);
-    }
-  }, [currentPage, totalPages]);
+  };
 
   return (
     <div className="dealers-page">
@@ -83,7 +79,7 @@ const Dealers = () => {
                   name="state"
                   id="state"
                   value={selectedState}
-                  onChange={(e) => setSelectedState(e.target.value)}
+                  onChange={(e) => resetPagination(e.target.value, itemsPerPage)}
                 >
                   <option value="All">All States</option>
                   {states.map((state) => (
@@ -100,7 +96,7 @@ const Dealers = () => {
                   name="itemsPerPage"
                   id="itemsPerPage"
                   value={itemsPerPage}
-                  onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                  onChange={(e) => resetPagination(selectedState, Number(e.target.value))}
                 >
                   {[5, 10, 15, 25].map((value) => (
                     <option key={value} value={value}>
