@@ -7,7 +7,7 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
   // Django serves static assets at /static/.
-  base: "/static/",
+  base: "/",
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),

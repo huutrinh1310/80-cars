@@ -1,0 +1,278 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="stylesheet" href="../src/assets/bootstrap.min.css" />
+    <link rel="stylesheet" href="../src/index.css" />
+    <style>
+      .contact-shell {
+        width: 80%;
+        margin: auto;
+        margin-top: 5%;
+      }
+
+      .contact-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+        align-items: stretch;
+      }
+
+      .contact-panel {
+        flex: 1 1 320px;
+        padding: 24px;
+      }
+
+      .contact-hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 24px;
+        align-items: center;
+        padding: 24px;
+      }
+
+      .contact-hero h1 {
+        margin-bottom: 12px;
+      }
+
+      .contact-badge {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(97, 64, 128, 0.12);
+        color: rgb(97, 64, 128);
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+
+      .contact-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+
+      .contact-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .contact-list strong {
+        display: inline-block;
+        min-width: 120px;
+      }
+
+      .contact-form .form-control {
+        margin-bottom: 14px;
+      }
+
+      @media (max-width: 900px) {
+        .contact-hero {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dealers-page">
+      <nav
+        class="navbar shadow-sm gap-5 px-5 flex navbar-expand-lg navbar-light"
+      >
+        <div class="container-fluid">
+          <a
+            class="flex items-center decoration-0 text-black! hover:opacity-70"
+            href="/"
+          >
+            <h2 style="padding-right: 5%">Dealerships</h2>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-5">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="font-size: larger"
+                  aria-current="page"
+                  href="/"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  style="font-size: larger"
+                  href="/static/About.html"
+                  >About Us</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  style="font-size: larger"
+                  href="/static/Contact.html"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex" id="navbarText">
+          <span class="navbar-text">
+            <div class="loginlink" id="loginlogout">
+              <div class="flex gap-2">
+                <a class="nav_item btn btn-primary" href="/auth/login">
+                  Login
+                </a>
+                <a class="nav_item btn btn-secondary" href="/auth/register">
+                  Register
+                </a>
+              </div>
+            </div>
+          </span>
+        </div>
+      </nav>
+
+      <div class="card contact-shell">
+        <div class="banner" name="contact-header">
+          <div class="contact-hero">
+            <div>
+              <span class="contact-badge">Contact Us</span>
+              <h1>Talk to the dealership team</h1>
+              <p class="details" style="padding: 0; margin-bottom: 18px">
+                Reach out for test drives, inventory questions, financing
+                support, trade-in estimates, or service appointments. We
+                respond as quickly as possible during business hours.
+              </p>
+              <ul class="contact-list">
+                <li>
+                  <strong>Phone:</strong>
+                  <a href="tel:+12145550199">+1 (214) 555-0199</a>
+                </li>
+                <li>
+                  <strong>Email:</strong>
+                  <a href="mailto:sales@dealerships.example">sales@dealerships.example</a>
+                </li>
+                <li>
+                  <strong>Address:</strong>
+                  8000 Main Street, Dallas, TX 75201
+                </li>
+                <li>
+                  <strong>Hours:</strong>
+                  Mon-Sat 9:00 AM - 7:00 PM, Sun 11:00 AM - 5:00 PM
+                </li>
+              </ul>
+            </div>
+            <div>
+              <img
+                class="card-img-top"
+                src="/static/contactus.png"
+                alt="Dealership contact banner"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card contact-panel">
+            <div class="card-body contact-form">
+              <p class="title">Send a message</p>
+              <form action="#" method="post">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                />
+                <input
+                  class="form-control"
+                  type="email"
+                  name="email"
+                  placeholder="Your email"
+                  required
+                />
+                <input
+                  class="form-control"
+                  type="text"
+                  name="subject"
+                  placeholder="Subject"
+                  required
+                />
+                <textarea
+                  class="form-control"
+                  name="message"
+                  rows="6"
+                  placeholder="How can we help you?"
+                  required
+                ></textarea>
+                <button class="btn btn-primary" type="submit">
+                  Submit Inquiry
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="card contact-panel">
+            <div class="card-body">
+              <p class="title">Department contacts</p>
+              <p class="card-text">
+                Use these direct lines if you need a specific team.
+              </p>
+              <ul class="contact-list">
+                <li>
+                  <strong>Sales:</strong>
+                  <a href="tel:+12145550110">+1 (214) 555-0110</a>
+                </li>
+                <li>
+                  <strong>Service:</strong>
+                  <a href="tel:+12145550120">+1 (214) 555-0120</a>
+                </li>
+                <li>
+                  <strong>Finance:</strong>
+                  <a href="tel:+12145550130">+1 (214) 555-0130</a>
+                </li>
+                <li>
+                  <strong>Support:</strong>
+                  <a href="mailto:support@dealerships.example">support@dealerships.example</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card contact-panel">
+            <div class="card-body">
+              <p class="title">Visit us in person</p>
+              <img
+                class="card-img-top"
+                src="/static/car_dealership.jpg"
+                alt="Dealership location"
+              />
+              <p class="card-text" style="margin-top: 16px">
+                We are located near downtown Dallas with parking available on
+                site. If you are coming for a scheduled appointment, please
+                arrive 10 minutes early so we can have the vehicle ready.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
